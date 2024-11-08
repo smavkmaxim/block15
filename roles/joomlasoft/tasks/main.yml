@@ -1,3 +1,4 @@
-- hosts: webservers
+- name: install nginx
+  hosts: webservers
   roles:
     - geerlingguy.nginx

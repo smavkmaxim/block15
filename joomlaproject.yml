@@ -1,6 +1,8 @@
 ---
 - name: Install joomla project
   hosts: webservers
-  gather_facts: false
+  gather_facts: true
+  become: yes
   roles:
-    - role: joomlasoft
+    - role: geerlingguy.nginx
+      #    - role: joomlasoft
