@@ -1,6 +1,6 @@
 ---
 - name: Install joomla project
-  hosts: web_servers
+  hosts: webservers
   gather_facts: false
   roles:
     - role: joomlasoft
