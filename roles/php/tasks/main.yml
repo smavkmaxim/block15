@@ -3,12 +3,13 @@
   block:
   - name: Install PHP
     apt:
-      name: php8.1
+      name: "{{ item }}"
       state: present
       update_cache: yes
-
-  - name: Start and enable nginx service
-    service:
-      name: php8.1
-      state: started
-      enabled: yes
+    loop:
+      - php8.1-curl
+      - php8.1-fpm
+      - php8.1-cli
+      - php8.1-mysql  
+      - php8.1-xml  
+      - php8.1-mbstring  
