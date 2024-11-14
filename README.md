@@ -2,3 +2,9 @@
 rebrain ansible final task
 
 ansible-playbook -i /home/user/task/inventory.yaml  /home/user/task/joomlaproject.yml -e "@/home/user/task/joomla.vault" --vault-password-file /home/user/task/.vault_pass
+
+
+mysql_root: root
+mysql_password: iDaeKZDGlU5vBLsaoZvt
+mysql_user: admin
+mysql_user_password: LNGsgS4rxC7t7KmLaP9q

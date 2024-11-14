@@ -10,10 +10,27 @@
     loop:
       - mysql-server
       - mysql-client
+      - python3-pip
 
   - name: Start and enable mysql service
     service:
       name: mysql
       state: started
       enabled: yes
-# tasks file for mysql
+
+  - name: Install pymysql
+    ansible.builtin.pip:
+      name: pymysql
+        
+  - name: set root account
+    become: true
+    community.mysql.mysql_user:
+      name: "{{ mysql_root }}"
+      password: "{{ mysql_password }}"
+
+  - name: set user account
+    mysql_user:
+      name: "{{ mysql_user }}"
+      password: "{{ mysql_user_password }}"
+      priv: "*.*:ALL"
+      state: present
