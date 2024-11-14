@@ -4,5 +4,11 @@
   gather_facts: true
   become: yes
   roles:
-    - role: geerlingguy.nginx
+    - role: nginx
+    - role: php
+    - role: mysql
+    - role: initapps
+    - role: joomla
+    #yy    - role: geerlingguy.nginx
+    #
       #    - role: joomlasoft
