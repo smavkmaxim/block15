@@ -1,2 +1,14 @@
----
-# tasks file for php
+- name: Install PHP on Debian based OS
+  become: true
+  block:
+  - name: Install PHP
+    apt:
+      name: php8.1
+      state: present
+      update_cache: yes
+
+  - name: Start and enable nginx service
+    service:
+      name: php8.1
+      state: started
+      enabled: yes

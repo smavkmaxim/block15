@@ -1,4 +1,4 @@
 # block15
 rebrain ansible final task
 
-ansible-playbook -i ~/task/inventory.yaml  ~/task/joomlaproject.yml -e "@~/task/joomla.vault" --vault-password-file ~/task/.vault_pass
+ansible-playbook -i /home/user/task/inventory.yaml  /home/user/task/joomlaproject.yml -e "@/home/user/task/joomla.vault" --vault-password-file /home/user/task/.vault_pass
