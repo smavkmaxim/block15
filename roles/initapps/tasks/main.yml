@@ -5,5 +5,9 @@
   block:
   - name: config nginx
     copy:
-      src: /home/user/task/nginx.conf
-      dest: /etc/nginx/
+      src: /home/user/task/default.nginx
+      dest: /etc/nginx/sites-available/default
+  - name: Start and enable nginx service
+    service:
+      name: nginx
+      state: restarted

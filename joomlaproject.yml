@@ -6,6 +6,6 @@
   roles:
     - role: nginx
     - role: php
-    - role: mysql
+      #    - role: mysql
     - role: initapps
     - role: joomla

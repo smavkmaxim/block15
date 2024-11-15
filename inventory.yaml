@@ -1,9 +1,9 @@
 webservers:
   hosts:
     web01:
-      ansible_host: 10.128.0.36
+      ansible_host: 10.128.0.26
       ansible_user: user
-      ansible_password: fmbpdka
+      ansible_password: jnextym
 
 all:
   webservers:
