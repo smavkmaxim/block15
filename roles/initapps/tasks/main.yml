@@ -1,2 +1,9 @@
 ---
 # tasks file for initapps
+- name: configuration
+  become: true
+  block:
+  - name: config nginx
+    copy:
+      src: /home/user/task/nginx.conf
+      dest: /etc/nginx/
