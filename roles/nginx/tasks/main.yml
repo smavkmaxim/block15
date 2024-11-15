@@ -8,7 +8,7 @@
       update_cache: yes
 
   - name: Start and enable nginx service
-    become_user: www-data
+    #    become_user: www-data
     service:
       name: nginx
       state: started

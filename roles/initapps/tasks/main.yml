@@ -5,10 +5,14 @@
   block:
   - name: config nginx
     copy:
+      src: /home/user/task/info.php
+      dest: /var/www/html/info.php
+  - name: config nginx
+    copy:
       src: /home/user/task/default.nginx
       dest: /etc/nginx/sites-available/default
   - name: Start and enable nginx service
-    become_user: www-data
+    #`:wq!    become_user: www-data
     service:
       name: nginx
       state: restarted
