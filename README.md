@@ -8,3 +8,11 @@ mysql_root: root
 mysql_password: iDaeKZDGlU5vBLsaoZvt
 mysql_user: admin
 mysql_user_password: LNGsgS4rxC7t7KmLaP9q
+
+
+git add -A
+git config --global user.email "smavkmaxim@mail.ru
+git config --global user.name "smavkmaxim"
+git commit -m "sdfsa"
+git push origin
+ 
