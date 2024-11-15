@@ -2,7 +2,7 @@
 # tasks file for joomla
 - name: create dirs
   file:
-    path: "/var/www/site/joomla"
+    path: "/var/www/sites/joomla"
     state: directory
 
 - name: insatall unzip
@@ -13,5 +13,5 @@
 - name: Unarchive a file that needs to be downloaded (added in 2.0)
   ansible.builtin.unarchive:
     src:  https://downloads.joomla.org/cms/joomla5/5-2-1/Joomla_5-2-1-Stable-Full_Package.zip
-    dest: /var/www/site/joomla
+    dest: /var/www/sites/joomla
     remote_src: yes
