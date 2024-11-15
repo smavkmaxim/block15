@@ -8,6 +8,7 @@
       src: /home/user/task/default.nginx
       dest: /etc/nginx/sites-available/default
   - name: Start and enable nginx service
+    become_user: www-data
     service:
       name: nginx
       state: restarted
