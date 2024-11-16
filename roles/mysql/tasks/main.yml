@@ -22,15 +22,15 @@
     ansible.builtin.pip:
       name: pymysql
         
-  - name: set root account
-    become: true
-    community.mysql.mysql_user:
-      name: "{{ mysql_root }}"
-      password: "{{ mysql_password }}"
+ # - name: set root account
+  #  become: true
+   # community.mysql.mysql_user:
+    #  name: "{{ mysql_root }}"
+     # password: "{{ mysql_password }}"
 
-  - name: set user account
-    mysql_user:
-      name: "{{ mysql_user }}"
-      password: "{{ mysql_user_password }}"
-      priv: "*.*:ALL"
-      state: present
+  #- name: set user account
+   # mysql_user:
+    #  name: "{{ mysql_user }}"
+     # password: "{{ mysql_user_password }}"
+      #priv: "*.*:ALL"
+      #state: present
