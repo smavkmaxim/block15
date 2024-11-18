@@ -16,6 +16,10 @@
       src: /etc/nginx/sites-available/joomla.conf
       dest: /etc/nginx/sites-enabled/joomla.conf
       state: link
+  - name: delete default
+    ansible.builtin.file:
+      path: /etc/nginx/sites-enabled/default
+      state: absent
   - name: Start and enable nginx service
     service:
       name: nginx
