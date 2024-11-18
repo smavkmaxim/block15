@@ -4,9 +4,9 @@
   gather_facts: false
   become: yes
   roles:
-    #- role: nginx
-    #- role: php
+    - role: nginx
+    - role: php
     - role: mysql
-      #- role: joomla
-      #- role: initapps
+    - role: joomla
+    - role: initapps
 

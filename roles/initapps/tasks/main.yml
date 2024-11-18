@@ -6,7 +6,7 @@
   - name: config nginx
     copy:
       src: /home/user/task/info.php
-      dest: /var/www/html/info.php
+      dest: /var/www/sites/joomla/info.php
   - name: config nginx
     copy:
       src: /home/user/task/joomla.conf
@@ -16,12 +16,7 @@
       src: /etc/nginx/sites-available/joomla.conf
       dest: /etc/nginx/sites-enabled/joomla.conf
       state: link
-#  - name: config nginx
-#    copy:
-#      src: /home/user/task/default.nginx
-#      dest: /etc/nginx/sites-available/default
   - name: Start and enable nginx service
-    #    become_user: www-data
     service:
       name: nginx
       state: reloaded
