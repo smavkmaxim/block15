@@ -32,7 +32,6 @@
       password:  "{{ mysql_password }}"
       login_unix_socket: /var/run/mysqld/mysqld.sock
       check_implicit_admin: yes
-    when: 'blank_root_pass.stderr==""'
 
   - name: Create a new database with name 'joomla_db'
     community.mysql.mysql_db:
