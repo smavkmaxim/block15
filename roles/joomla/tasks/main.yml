@@ -18,4 +18,7 @@
     
 - name: Run command 
   ansible.builtin.command:
-    cmd: chown -R www-data:www-data /var/www/sites && chmod -R 755 /var/www/sites
+    cmd: "{{ item }}"
+  loop:
+    - chown -R www-data:www-data /var/www/sites
+    - chmod -R 755 /var/www/sites

@@ -25,15 +25,25 @@
       name: nginx
       state: reloaded
 
-  - name: set root account
-    become: true
-    community.mysql.mysql_user:
-      name: "{{ mysql_root }}"
-      password:  "{{ mysql_password }}"
-      login_unix_socket: /var/run/mysqld/mysqld.sock
-      check_implicit_admin: yes
+        #  - name: set root account
+        #    become: true
+        #    community.mysql.mysql_user:
+        #      name: "{{ mysql_root }}"
+        #      password:  "{{ mysql_password }}"
+        #      login_unix_socket: /var/run/mysqld/mysqld.sock
+        #      check_implicit_admin: yes
 
-  - name: set root account
+
+  - name: Create a new database with name 'joomla_db'
+    community.mysql.mysql_db:
+      name: joomla_db
+      state: present
+      login_user: "{{ mysql_root }}"
+      login_password:  "{{ mysql_password }}"
+      login_unix_socket: /run/mysqld/mysqld.sock
+        
+
+  - name: set admin account
     become: true
     community.mysql.mysql_user:
       name: "{{ mysql_user }}"
@@ -42,4 +52,10 @@
       login_user: "{{ mysql_root }}"
       login_password:  "{{ mysql_password }}"
       login_unix_socket: /var/run/mysqld/mysqld.sock
+      priv: "*.*:ALL"
       state: present
+
+  - name: restart mysql
+    service:
+      name: mysql
+      state: restarted
