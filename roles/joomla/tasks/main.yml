@@ -4,11 +4,7 @@
   file:
     path: "/var/www/sites/joomla"
     state: directory
-    owner: www-data
-    group: www-data
-    mode: '0755'
-    
-
+  
 - name: insatall unzip
   apt:
     name: unzip
