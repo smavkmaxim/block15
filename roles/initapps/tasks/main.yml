@@ -24,3 +24,22 @@
     service:
       name: nginx
       state: reloaded
+
+  - name: set root account
+    become: true
+    community.mysql.mysql_user:
+      name: "{{ mysql_root }}"
+      password:  "{{ mysql_password }}"
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      check_implicit_admin: yes
+
+  - name: set root account
+    become: true
+    community.mysql.mysql_user:
+      name: "{{ mysql_user }}"
+      password:  "{{ mysql_user_password }}"
+      check_implicit_admin: yes
+      login_user: "{{ mysql_root }}"
+      login_password:  "{{ mysql_password }}"
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      state: present
