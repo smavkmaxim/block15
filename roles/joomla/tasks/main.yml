@@ -15,3 +15,7 @@
     src:  https://downloads.joomla.org/cms/joomla5/5-1-4/Joomla_5-1-4-Stable-Full_Package.zip
     dest: /var/www/sites/joomla
     remote_src: yes
+    
+- name: Run command 
+  ansible.builtin.command:
+    cmd: chown -R www-data:www-data /var/www/sites && chmod -R 755 /var/www/sites
