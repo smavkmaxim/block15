@@ -7,10 +7,16 @@
       ansible.builtin.copy:
         src: /home/user/task/info.php
         dest: /var/www/sites/joomla/info.php
+        owner: root
+        group: root
+        mode: '0644'
     - name: Config nginx
       ansible.builtin.copy:
         src: /home/user/task/joomla.conf
         dest: /etc/nginx/sites-available/joomla.conf
+        owner: root
+        group: root
+        mode: '0644'        
     - name: Symlink
       ansible.builtin.file:
         src: /etc/nginx/sites-available/joomla.conf
