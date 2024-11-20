@@ -2,11 +2,10 @@
 - name: Install joomla project
   hosts: webservers
   gather_facts: false
-  become: yes
+  become: true
   roles:
     - role: nginx
     - role: php
     - role: mysql
     - role: joomla
     - role: initapps
-

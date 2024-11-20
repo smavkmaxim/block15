@@ -2,22 +2,22 @@
 - name: Install mysql on Debian based OS
   become: true
   block:
-  - name: Install mysql
-    apt:
-      name: "{{ item  }}"
-      state: present
-      update_cache: yes
-    loop:
-      - mysql-server
-      - mysql-client
-      - python3-pip
+    - name: Install mysql
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+      loop:
+        - mysql-server
+        - mysql-client
+        - python3-pip
 
-  - name: Start and enable mysql service
-    service:
-      name: mysql
-      state: started
-      enabled: yes
+    - name: Start and enable mysql service
+      ansible.builtin.service:
+        name: mysql
+        state: started
+        enabled: true
 
-  - name: Install pymysql
-    ansible.builtin.pip:
-      name: pymysql
+    - name: Install pymysql
+      ansible.builtin.pip:
+        name: pymysql

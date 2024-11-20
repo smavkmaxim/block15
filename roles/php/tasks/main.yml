@@ -1,15 +1,15 @@
 - name: Install PHP on Debian based OS
   become: true
   block:
-  - name: Install PHP
-    apt:
-      name: "{{ item }}"
-      state: present
-      update_cache: yes
-    loop:
-      - php8.1-curl
-      - php8.1-fpm
-      - php8.1-cli
-      - php8.1-mysql  
-      - php8.1-xml  
-      - php8.1-mbstring  
+    - name: Install PHP
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+      loop:
+        - php8.1-curl
+        - php8.1-fpm
+        - php8.1-cli
+        - php8.1-mysql
+        - php8.1-xml
+        - php8.1-mbstring
