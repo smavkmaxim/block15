@@ -1,8 +1,8 @@
 webservers:
   hosts:
     web01:
-      ansible_host: 10.129.0.8
+      ansible_host: 10.129.0.22
       ansible_user: user
-      ansible_password: cxjuieg
+      ansible_password: moojgac
 all:
   webservers:

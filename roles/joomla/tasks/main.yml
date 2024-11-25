@@ -18,8 +18,66 @@
     remote_src: true
 
 - name: Run command
-  ansible.builtin.command:
-    cmd: "{{ item }}"
-  loop:
-    - chown -R www-data:www-data /var/www/sites
-    - chmod -R 755 /var/www/sites
+  ansible.builtin.file:
+    path: /var/www/sites
+    recurse: true 
+    owner: www-data
+    group: www-data
+    mode: '755'
+
+- name: Configuration
+  become: true
+  block:
+    - name: Config nginx
+      ansible.builtin.copy:
+        src: joomla.conf
+        dest: /etc/nginx/sites-available/joomla.conf
+        owner: root
+        group: root
+        mode: '0644'        
+    - name: Symlink
+      ansible.builtin.file:
+        src: /etc/nginx/sites-available/joomla.conf
+        dest: /etc/nginx/sites-enabled/joomla.conf
+        state: link
+    - name: Delete default
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+    - name: Start and enable nginx service
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
+
+    - name: Set root account
+      become: true
+      community.mysql.mysql_user:
+        name: "{{ mysql_root }}"
+        password: "{{ mysql_password }}"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        check_implicit_admin: true
+
+    - name: Create a new database with name 'joomla_db'
+      community.mysql.mysql_db:
+        name: joomla_db
+        state: present
+        login_user: "{{ mysql_root }}"
+        login_password: "{{ mysql_password }}"
+        login_unix_socket: /run/mysqld/mysqld.sock
+
+    - name: Set admin account
+      become: true
+      community.mysql.mysql_user:
+        name: "{{ mysql_user }}"
+        password: "{{ mysql_user_password }}"
+        check_implicit_admin: true
+        login_user: "{{ mysql_root }}"
+        login_password: "{{ mysql_password }}"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        priv: "*.*:ALL"
+        state: present
+
+    - name: Restart mysql
+      ansible.builtin.service:
+        name: mysql
+        state: restarted
