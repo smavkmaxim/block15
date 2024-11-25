@@ -44,14 +44,10 @@
       ansible.builtin.file:
         path: /etc/nginx/sites-enabled/default
         state: absent
-
+        
       notify:
         - Reload nginx
-          # - name: Start and enable nginx service
-          #      ansible.builtin.service:
-          #        name: nginx
-          #        state: reloaded
-
+        
     - name: Set root account
       become: true
       community.mysql.mysql_user:
