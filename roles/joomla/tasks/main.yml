@@ -26,7 +26,6 @@
     mode: '755'
 
 - name: Configuration
-  become: true
   block:
     - name: Config nginx
       ansible.builtin.copy:
@@ -49,7 +48,6 @@
         - Reload nginx
         
     - name: Set root account
-      become: true
       community.mysql.mysql_user:
         name: "{{ mysql_root }}"
         password: "{{ mysql_password }}"
@@ -65,7 +63,6 @@
         login_unix_socket: /run/mysqld/mysqld.sock
 
     - name: Set admin account
-      become: true
       community.mysql.mysql_user:
         name: "{{ mysql_user }}"
         password: "{{ mysql_user_password }}"
