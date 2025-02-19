@@ -72,8 +72,3 @@
         login_unix_socket: /var/run/mysqld/mysqld.sock
         priv: "*.*:ALL"
         state: present
-
-          #    - name: Restart mysql
-          #      ansible.builtin.service:
-          #        name: mysql
-          #        state: restarted
