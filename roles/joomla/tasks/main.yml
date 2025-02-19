@@ -73,7 +73,7 @@
         priv: "*.*:ALL"
         state: present
 
-    - name: Restart mysql
-      ansible.builtin.service:
-        name: mysql
-        state: restarted
+          #    - name: Restart mysql
+          #      ansible.builtin.service:
+          #        name: mysql
+          #        state: restarted
