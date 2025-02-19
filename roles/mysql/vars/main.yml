@@ -1,0 +1,4 @@
+soft_mysql:
+  - mysql-server
+  - mysql-client
+  - python3-pip

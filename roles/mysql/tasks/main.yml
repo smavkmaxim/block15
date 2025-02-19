@@ -7,10 +7,7 @@
         name: "{{ item }}"
         state: present
         update_cache: true
-      loop:
-        - mysql-server
-        - mysql-client
-        - python3-pip
+      loop: '{{ soft_mysql }}'
 
     - name: Start and enable mysql service
       ansible.builtin.service:
