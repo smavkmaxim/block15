@@ -1,0 +1,48 @@
+---
+- name: Configuration
+  block:
+    - name: Config nginx
+      ansible.builtin.copy:
+        src: joomla.conf
+        dest: /etc/nginx/sites-available/joomla.conf
+        owner: root
+        group: root
+        mode: '0644'        
+    - name: Symlink
+      ansible.builtin.file:
+        src: /etc/nginx/sites-available/joomla.conf
+        dest: /etc/nginx/sites-enabled/joomla.conf
+        state: link
+    - name: Delete default
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+        
+      notify:
+        - Reload nginx
+        
+    - name: Set root account
+      community.mysql.mysql_user:
+        name: "{{ mysql_root }}"
+        password: "{{ mysql_password }}"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        check_implicit_admin: true
+
+    - name: Create a new database with name 'joomla_db'
+      community.mysql.mysql_db:
+        name: joomla_db
+        state: present
+        login_user: "{{ mysql_root }}"
+        login_password: "{{ mysql_password }}"
+        login_unix_socket: /run/mysqld/mysqld.sock
+
+    - name: Set admin account
+      community.mysql.mysql_user:
+        name: "{{ mysql_user }}"
+        password: "{{ mysql_user_password }}"
+        check_implicit_admin: true
+        login_user: "{{ mysql_root }}"
+        login_password: "{{ mysql_password }}"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        priv: "*.*:ALL"
+        state: present

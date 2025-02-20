@@ -8,4 +8,4 @@
     - role: php
     - role: mysql
     - role: joomla
-   #  - role: initapps
+    - role: initapps
